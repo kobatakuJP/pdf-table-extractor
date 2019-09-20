@@ -138,7 +138,7 @@ const pdf_table_extractor = function (doc) {
             bottom = Math.max(lines[i].bottom, bottom);
             let new_lines = [];
             if (i > 1) {
-              news_lines = lines.slice(0, i - 1);
+              new_lines = lines.slice(0, i - 1);
             }
             new_lines = new_lines.concat(lines.slice(i + 1));
             lines = new_lines;
@@ -207,7 +207,7 @@ const pdf_table_extractor = function (doc) {
             right = Math.max(lines[i].right, right);
             let new_lines = [];
             if (i > 1) {
-              news_lines = lines.slice(0, i - 1);
+              new_lines = lines.slice(0, i - 1);
             }
             new_lines = new_lines.concat(lines.slice(i + 1));
             lines = new_lines;
