@@ -1,12 +1,36 @@
+import { PDFJS } from "./build/pdf";
+
+declare global {
+  interface Window {
+    PDFJS: any
+  }
+}
+
 // modify from https://github.com/mozilla/pdf.js/blob/master/examples/node/pdf2svg.js
-const pdf_table_extractor_progress = function (result) {
+export const pdf_table_extractor_progress = function (result) {
 };
 
-const PDFJS = (window as any).PDFJS;
+interface PageTables {
+  page: number,
+  tables: {
+    [horizontalID: number]:
+    { [verticalID: number]: string }
+  },
+  merges: any,
+  merge_alias: any,
+  width: number,
+  height: number,
+}
 
-const pdf_table_extractor = function (doc) {
+interface Result {
+  pageTables: PageTables[],
+  numPages: number,
+  currentPages: number
+}
+
+export const pdf_table_extractor = function (doc): Promise<Result> {
   var numPages = doc.numPages;
-  var result = {
+  var result: Result = {
     pageTables: [] as any[],
     numPages: numPages,
     currentPages: 0
@@ -485,5 +509,3 @@ const pdf_table_extractor = function (doc) {
     return result;
   });
 };
-
-export default pdf_table_extractor;
