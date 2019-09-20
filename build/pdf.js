@@ -15,6 +15,8 @@
 /* jshint globalstrict: false */
 /* umdutils ignore */
 
+var PdfjsWorker = require("./pdf.worker.js");
+
 (function (root, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
@@ -39637,7 +39639,7 @@ var PDFWorker = (function PDFWorkerClosure() {
 //    return pdfjsFilePath.replace(/\.js$/i, '.worker.js');
 //  }
 //#endif
-    error('No PDFJS.workerSrc specified');
+    return null; // kobataku: set null, use default worker in there
   }
 
   var fakeWorkerFilesLoadedCapability;
@@ -39657,10 +39659,10 @@ var PDFWorker = (function PDFWorkerClosure() {
           WorkerMessageHandler = worker.WorkerMessageHandler;
           fakeWorkerFilesLoadedCapability.resolve(WorkerMessageHandler);
         });
-      } else if (typeof require === 'function') {
-        var worker = require('../core/worker.js');
-        WorkerMessageHandler = worker.WorkerMessageHandler;
-        fakeWorkerFilesLoadedCapability.resolve(WorkerMessageHandler);
+      // } else if (typeof require === 'function') { // kobataku: comment out. because it is unnecessary
+      //   var worker = require('../core/worker.js');
+      //   WorkerMessageHandler = worker.WorkerMessageHandler;
+      //   fakeWorkerFilesLoadedCapability.resolve(WorkerMessageHandler);
       } else {
         throw new Error('AMD or CommonJS must be used to load fake worker.');
       }
@@ -39735,7 +39737,7 @@ var PDFWorker = (function PDFWorkerClosure() {
 //#endif
           // Some versions of FF can't create a worker on localhost, see:
           // https://bugzilla.mozilla.org/show_bug.cgi?id=683280
-          var worker = new Worker(workerSrc);
+          var worker = workerSrc ? new Worker(workerSrc) : new PdfjsWorker();
           var messageHandler = new MessageHandler('main', 'worker', worker);
           var terminateEarly = function() {
             worker.removeEventListener('error', onWorkerError);
