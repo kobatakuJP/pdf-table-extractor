@@ -4,15 +4,17 @@
   "description": "Extract tables from PDF file",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc"
+    "build": "npx webpack"
   },
   "author": "Ronny Wang, kobataku",
   "license": "BSD License",
-  "dependencies": {
-    "pdfjs-dist": "^2.1.266"
-  },
+  "main": "dist/pdf-table-extractor.js",
+  "dependencies": {},
   "devDependencies": {
-    "@types/pdfjs-dist": "^2.1.1",
-    "typescript": "^3.6.3"
+    "ts-loader": "^6.1.0",
+    "typescript": "^3.6.3",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9",
+    "worker-loader": "^2.0.0"
   }
 }
