@@ -1,8 +1,8 @@
 const path = require('path')
 
 module.exports = {
-  mode: 'production',
-  // mode: 'development',
+  // mode: 'production',
+  mode: 'development',
   entry: {
     index: './index.ts',
     'pdf-table-extractor': './pdf-table-extractor.ts'
