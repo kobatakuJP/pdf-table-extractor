@@ -7,7 +7,7 @@ declare global {
 }
 
 // modify from https://github.com/mozilla/pdf.js/blob/master/examples/node/pdf2svg.js
-export const pdf_table_extractor_progress = function (result) {
+export const pdf_table_extractor_progress = function (result: Result) {
 };
 
 interface PageTables {
@@ -26,6 +26,11 @@ interface Result {
   pageTables: PageTables[],
   numPages: number,
   currentPages: number
+}
+
+/** extruct from PDF file path */
+export const pdf_table_extractor_from_path = function (docpath: string, passwordCallback?: Function, progressCallback?: Function): Promise<Result> {
+  return PDFJS.getDocument(docpath, passwordCallback, progressCallback).then(pdf_table_extractor);
 }
 
 export const pdf_table_extractor = function (doc): Promise<Result> {
