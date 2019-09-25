@@ -1,5 +1,5 @@
 {
-  "name": "pdf-table-extractor",
+  "name": "@kobataku/pdf-table-extractor",
   "version": "1.0.0",
   "description": "Extract tables from PDF file",
   "scripts": {
@@ -20,5 +20,8 @@
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
     "worker-loader": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
