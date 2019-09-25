@@ -9,14 +9,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /.jsx?$/,
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      //   query: {
-      //     presets: ['@babel/preset-env'],
-      //   },
-      // },
       {
         test: /\.worker\.js$/,
         use: { loader: 'worker-loader', options: { inline: true, fallback: false } }
@@ -33,6 +25,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'commonjs',
   }
 }
