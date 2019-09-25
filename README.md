@@ -1,16 +1,28 @@
-# pdf-table-extractor
-Extractor tables from PDF
+# @kobataku/pdf-table-extractor
+Fork from https://github.com/ronnywang/pdf-table-extractor
 
-Web DEMO: https://ronnywang.github.io/pdf-table-extractor/
+The purpose of this fork is to provide a valid npm module for Typescript development.
 
-Command line tools install
---------------------------
-1. git clone https://github.com/mozilla/pdf.js
-2. cd pdf.js/
-3. npm install
-4. node make.js dist
-5. cd ../
-6. node parse-cmd.js samples/pta_10229_131308_94274.pdf
+Specification of extract and check algorithm, please check https://github.com/ronnywang/pdf-table-extractor
+
+install
+
+```
+npm install --save @kobataku/pdf-table-extractor
+```
+
+usage
+
+```typescript
+import * as pte from "pdf-table-extractor";
+
+function async extract() {
+    const data = await pte.pdf_table_extractor_from_path("your pdf path");
+    console.log(data.pageTables); // get 2D array for table
+}
+
+extract();
+```
 
 License
 -------
