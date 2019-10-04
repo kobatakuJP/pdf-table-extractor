@@ -10,7 +10,7 @@ declare global {
 export const pdf_table_extractor_progress = function (result: Result) {
 };
 
-interface PageTables {
+export interface PageTables {
   page: number,
   tables: {
     [horizontalID: number]:
@@ -22,7 +22,7 @@ interface PageTables {
   height: number,
 }
 
-interface Result {
+export interface Result {
   pageTables: PageTables[],
   numPages: number,
   currentPages: number
